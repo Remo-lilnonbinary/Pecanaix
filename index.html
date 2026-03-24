@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pecan — Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --pecan-orange: #EF8E59;
@@ -21,7 +21,7 @@
     --shadow-md: 0 4px 16px rgba(45,27,14,0.08);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--pecan-bg); color: var(--pecan-dark); height: 100vh; display: flex; overflow: hidden; }
+  body { font-family: 'Inter', sans-serif; background: var(--pecan-bg); color: var(--pecan-dark); height: 100vh; display: flex; overflow: hidden; }
 
   .sidebar { width: 240px; background: var(--pecan-white); border-right: 1px solid rgba(45,27,14,0.06); display: flex; flex-direction: column; padding: 24px 0; flex-shrink: 0; }
   .sidebar-logo { padding: 0 24px; margin-bottom: 36px; display: flex; align-items: center; gap: 10px; }
@@ -35,6 +35,8 @@
   .nav-item.active { background: var(--pecan-orange); color: white; opacity: 1; font-weight: 600; }
   .nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
   .sidebar-footer { padding: 16px 24px; border-top: 1px solid rgba(45,27,14,0.06); display: flex; align-items: center; gap: 10px; }
+  .sidebar-footer .settings-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(45,27,14,0.08); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--pecan-brown); transition: all 0.15s; margin-left: auto; }
+  .sidebar-footer .settings-btn:hover { background: var(--pecan-cream); }
   .avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--pecan-light); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; color: var(--pecan-deep); }
   .sidebar-footer .user-info { font-size: 12px; }
   .sidebar-footer .user-info .name { font-weight: 600; }
@@ -63,14 +65,20 @@
   .chat-empty { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; overflow: auto; }
   .chat-empty-logo { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--pecan-dark); margin-bottom: 6px; }
   .chat-empty-sub { font-size: 14px; color: var(--pecan-brown); opacity: 0.45; margin-bottom: 40px; }
-  .chat-input-centered { width: 100%; max-width: 620px; display: flex; align-items: flex-end; gap: 10px; background: var(--pecan-white); border: 1.5px solid rgba(45,27,14,0.1); border-radius: 14px; padding: 12px 16px; box-shadow: var(--shadow-md); transition: border-color 0.15s; }
-  .chat-input-centered:focus-within { border-color: var(--pecan-orange); box-shadow: 0 0 0 3px rgba(239,142,89,0.1), var(--shadow-md); }
-  .chat-input-centered input { flex: 1; border: none; outline: none; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--pecan-dark); background: transparent; }
-  .chat-input-centered input::placeholder { color: var(--pecan-brown); opacity: 0.35; }
-  .send-circle { width: 36px; height: 36px; border-radius: 50%; background: var(--pecan-orange); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; box-shadow: 0 2px 8px rgba(239,142,89,0.3); }
+  .chat-input-centered { width: 100%; max-width: 620px; display: flex; flex-direction: column; background: var(--pecan-dark); border-radius: 20px; padding: 16px 20px 12px; box-shadow: 0 8px 32px rgba(45,27,14,0.15); transition: box-shadow 0.2s; }
+  .chat-input-centered:focus-within { box-shadow: 0 8px 40px rgba(45,27,14,0.2); }
+  .chat-input-top { display: flex; align-items: center; gap: 10px; width: 100%; }
+  .chat-input-centered input { flex: 1; border: none; outline: none; font-family: 'Inter', sans-serif; font-size: 15px; color: rgba(255,255,255,0.9); background: transparent; }
+  .chat-input-centered input::placeholder { color: rgba(255,255,255,0.35); }
+  .chat-input-bottom-bar { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .chat-input-actions { display: flex; align-items: center; gap: 4px; }
+  .chat-input-actions button { width: 32px; height: 32px; border-radius: 8px; border: none; background: transparent; color: rgba(255,255,255,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .chat-input-actions button:hover { color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.06); }
+  .chat-input-actions .divider { width: 1px; height: 18px; background: rgba(255,255,255,0.08); margin: 0 4px; }
+  .send-circle { width: 36px; height: 36px; border-radius: 50%; background: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; }
   .send-circle:hover { transform: scale(1.05); }
   .send-circle svg { width: 16px; height: 16px; }
-  .chat-hint { margin-top: 12px; font-size: 11px; color: var(--pecan-brown); opacity: 0.3; text-align: center; }
+  .chat-hint { margin-top: 14px; font-size: 11px; color: var(--pecan-brown); opacity: 0.3; text-align: center; }
   .chat-conversation { flex: 1; min-height: 0; display: none; flex-direction: column; overflow: hidden; max-width: 720px; width: 100%; margin: 0 auto; padding: 32px 24px 0; box-sizing: border-box; }
   .chat-conversation.active { display: flex; }
   .chat-messages { flex: 1; min-height: 0; overflow-y: auto; padding-bottom: 20px; -webkit-overflow-scrolling: touch; }
@@ -97,10 +105,12 @@
   .quick-chip:hover { background: rgba(239,142,89,0.15); }
   .quick-chip svg { width: 13px; height: 13px; }
   .chat-bottom-input { flex-shrink: 0; padding: 16px 0 28px; border-top: 1px solid rgba(45,27,14,0.06); }
-  .chat-bottom-wrapper { display: flex; align-items: flex-end; gap: 10px; background: var(--pecan-white); border: 1.5px solid rgba(45,27,14,0.1); border-radius: 14px; padding: 10px 14px; box-shadow: var(--shadow-sm); }
-  .chat-bottom-wrapper:focus-within { border-color: var(--pecan-orange); box-shadow: 0 0 0 3px rgba(239,142,89,0.1); }
-  .chat-bottom-wrapper input { flex: 1; border: none; outline: none; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--pecan-dark); background: transparent; }
-  .chat-bottom-wrapper input::placeholder { color: var(--pecan-brown); opacity: 0.35; }
+  .chat-bottom-wrapper { display: flex; flex-direction: column; background: var(--pecan-dark); border-radius: 20px; padding: 14px 18px 10px; box-shadow: 0 4px 16px rgba(45,27,14,0.1); }
+  .chat-bottom-wrapper:focus-within { box-shadow: 0 4px 20px rgba(45,27,14,0.15); }
+  .chat-bottom-top { display: flex; align-items: center; gap: 10px; width: 100%; }
+  .chat-bottom-wrapper input { flex: 1; border: none; outline: none; font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.9); background: transparent; }
+  .chat-bottom-wrapper input::placeholder { color: rgba(255,255,255,0.35); }
+  .chat-bottom-bar { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.06); }
   .typing-indicator { display: flex; align-items: center; gap: 4px; padding: 4px 0; }
   .typing-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pecan-orange); opacity: 0.4; animation: typingPulse 1.4s infinite; }
   .typing-dot:nth-child(2) { animation-delay: 0.2s; }
@@ -118,11 +128,11 @@
   .file-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--pecan-orange); color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; margin-top: 12px; }
   .file-tag svg { width: 14px; height: 14px; }
   .match-btn-wrapper { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
-  .match-btn { background: var(--pecan-dark); color: white; border: none; padding: 14px 32px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-md); }
+  .match-btn { background: var(--pecan-dark); color: white; border: none; padding: 14px 32px; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-md); }
   .match-btn svg { width: 18px; height: 18px; }
   .match-config { display: flex; align-items: center; gap: 10px; }
   .config-label { font-size: 12px; color: var(--pecan-brown); opacity: 0.6; }
-  .config-select { appearance: none; padding: 8px 28px 8px 12px; border-radius: 8px; border: 1px solid rgba(45,27,14,0.1); background: var(--pecan-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B5E3C' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--pecan-dark); cursor: pointer; }
+  .config-select { appearance: none; padding: 8px 28px 8px 12px; border-radius: 8px; border: 1px solid rgba(45,27,14,0.1); background: var(--pecan-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B5E3C' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--pecan-dark); cursor: pointer; }
   .results-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
   .results-header h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 800; }
   .results-meta { font-size: 12px; color: var(--pecan-brown); opacity: 0.5; }
@@ -158,9 +168,9 @@
   .stat-value { font-size: 18px; font-weight: 800; color: var(--pecan-orange); }
   .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; opacity: 0.4; font-weight: 600; }
   .action-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-  .btn-primary { background: var(--pecan-dark); color: white; border: none; padding: 12px 24px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-md); }
+  .btn-primary { background: var(--pecan-dark); color: white; border: none; padding: 12px 24px; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-md); }
   .btn-primary svg { width: 16px; height: 16px; }
-  .btn-secondary { background: var(--pecan-white); color: var(--pecan-dark); border: 1px solid rgba(45,27,14,0.12); padding: 12px 24px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+  .btn-secondary { background: var(--pecan-white); color: var(--pecan-dark); border: 1px solid rgba(45,27,14,0.12); padding: 12px 24px; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
   .btn-secondary:hover { background: var(--pecan-cream); }
   .btn-secondary svg { width: 16px; height: 16px; }
   .btn-badge { background: var(--pecan-orange); color: white; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 4px; }
@@ -188,13 +198,13 @@
   .email-card-footer { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background: rgba(245,196,155,0.06); border-top: 1px solid rgba(45,27,14,0.03); }
   .personalization-tags { display: flex; gap: 6px; }
   .p-tag { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 4px; background: rgba(232,148,90,0.1); color: var(--pecan-deep); }
-  .send-btn { background: transparent; border: 1px solid rgba(45,27,14,0.1); padding: 6px 14px; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px; color: var(--pecan-dark); }
+  .send-btn { background: transparent; border: 1px solid rgba(45,27,14,0.1); padding: 6px 14px; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px; color: var(--pecan-dark); }
   .send-btn:hover { background: var(--pecan-cream); }
   .send-btn svg { width: 14px; height: 14px; }
 
   /* INSIGHTS */
   .content-header-flex { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-  .event-selector { appearance: none; padding: 8px 28px 8px 12px; border-radius: 8px; border: 1px solid rgba(45,27,14,0.1); background: var(--pecan-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B5E3C' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--pecan-dark); cursor: pointer; }
+  .event-selector { appearance: none; padding: 8px 28px 8px 12px; border-radius: 8px; border: 1px solid rgba(45,27,14,0.1); background: var(--pecan-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B5E3C' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px center; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--pecan-dark); cursor: pointer; }
   .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
   .kpi-card { background: var(--pecan-white); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow-sm); border: 1px solid rgba(45,27,14,0.04); }
   .kpi-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--pecan-brown); opacity: 0.5; margin-bottom: 6px; }
@@ -275,14 +285,11 @@
       <div class="nav-item" data-tab="outreach" onclick="switchTab('outreach')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Outreach</div>
       <div class="nav-item" data-tab="insights" onclick="switchTab('insights')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>Insights</div>
     </div>
-    <div class="nav-section">
-      <div class="nav-section-label">Manage</div>
-      <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Alumni Database</div>
-      <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Events</div>
-      <div class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</div>
-    </div>
   </nav>
-  <div class="sidebar-footer"><div class="avatar">SK</div><div class="user-info"><div class="name">Sarah K.</div><div class="role">Alumni Relations</div></div></div>
+  <div class="sidebar-footer">
+    <div class="avatar">SK</div><div class="user-info"><div class="name">Sarah K.</div><div class="role">Alumni Relations</div></div>
+    <button class="settings-btn" title="Settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+  </div>
 </aside>
 
 <div class="main">
@@ -294,27 +301,33 @@
       <div class="chat-empty-logo">pecan</div>
       <div class="chat-empty-sub">Your AI-powered alumni engagement assistant</div>
       <div class="chat-input-centered">
-        <input type="text" id="chatInput" placeholder="Ask anything about your alumni, events, or insights..." autocomplete="off">
-        <button class="send-circle" onclick="sendChat()"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+        <div class="chat-input-top">
+          <input type="text" id="chatInput" placeholder="Type your message here..." autocomplete="off">
+        </div>
+        <div class="chat-input-bottom-bar">
+          <div class="chat-input-actions">
+            <button title="Attach file"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
+            <button title="Web search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></button>
+            <div class="divider"></div>
+            <button title="Settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+          </div>
+          <button class="send-circle" onclick="sendChat()"><svg viewBox="0 0 24 24" fill="none" stroke="var(--pecan-dark)" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+        </div>
       </div>
       <div class="chat-hint">Pecan AI has access to your alumni database, events, and reports</div>
     </div>
     <div class="chat-conversation" id="chatConversation">
       <div class="chat-messages" id="chatMessages"></div>
-      <div class="chat-bottom-input"><div class="chat-bottom-wrapper"><input type="text" id="chatInputBottom" placeholder="Ask a follow-up..." autocomplete="off"><button class="send-circle" onclick="sendChat()"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div></div>
+      <div class="chat-bottom-input"><div class="chat-bottom-wrapper"><div class="chat-bottom-top"><input type="text" id="chatInputBottom" placeholder="Ask a follow-up..." autocomplete="off"></div><div class="chat-bottom-bar"><div class="chat-input-actions"><button title="Attach"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button></div><button class="send-circle" onclick="sendChat()"><svg viewBox="0 0 24 24" fill="none" stroke="var(--pecan-dark)" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div></div></div>
     </div>
   </div>
 
   <!-- MATCHING -->
   <div class="tab-page" id="page-matching">
     <div class="content">
-      <div class="content-header"><h1>Alumni Matching</h1><p>Upload your event details and alumni list — Pecan will find the best-fit alumni for your event.</p></div>
-      <div class="upload-section">
-        <div class="upload-card filled"><div class="upload-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><h3>Event Brief</h3><p>PDF, DOCX or TXT describing the event</p><div class="file-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Tech_Founders_Gala_2026.pdf</div></div>
-        <div class="upload-card filled"><div class="upload-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>Alumni List</h3><p>CSV or XLSX with alumni data</p><div class="file-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>alumni_database_2026.csv</div></div>
-      </div>
+      <div class="content-header"><h1>Alumni Matching</h1><p>Pecan finds the best-fit alumni for your event based on AI-powered scoring.</p></div>
       <div class="match-btn-wrapper"><button class="match-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4m-9-9h4m14 0h4"/></svg>Find Best Matches</button><div class="match-config"><span class="config-label">Show top</span><select class="config-select"><option>10 alumni</option><option>5 alumni</option></select></div></div>
-      <div class="results-section"><div class="results-header"><h2>Top Matches</h2><span class="results-meta" id="resultsMeta">10 of 4,218 alumni &middot; Matched in 3.2s</span></div>
+      <div class="results-section"><div class="results-header"><h2>Top Matches</h2><span class="results-meta" id="resultsMeta">0 alumni matched</span></div>
         <div class="results-table"><table><thead><tr><th style="width:5%">#</th><th style="width:22%">Alumni</th><th style="width:13%">Match Score</th><th style="width:22%">Relevance Tags</th><th style="width:18%">Current Role</th><th style="width:10%">Engagement</th><th style="width:10%">Location</th></tr></thead><tbody id="resultsTableBody"></tbody></table></div>
       </div>
     </div>
@@ -324,7 +337,7 @@
   <div class="tab-page" id="page-outreach">
     <div class="content">
       <div class="content-header"><h1>Personalized Outreach</h1><p>AI-generated personal invitations for each alumni — review, edit, and send.</p></div>
-      <div class="event-context"><div class="event-context-left"><div class="event-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><div class="event-name" id="outreachEventName">Tech Founders Gala 2026</div><div class="event-date" id="outreachEventMeta">June 14, 2026 &middot; The Shard, London</div></div></div><div class="event-stats" id="outreachEventStats"><div class="stat-item"><div class="stat-value" id="outreachStatMatched">10</div><div class="stat-label">Matched</div></div><div class="stat-item"><div class="stat-value" id="outreachStatDrafts">10</div><div class="stat-label">Drafts Ready</div></div><div class="stat-item"><div class="stat-value" id="outreachStatSent">0</div><div class="stat-label">Sent</div></div></div></div>
+      <div class="event-context"><div class="event-context-left"><div class="event-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div><div class="event-name" id="outreachEventName">Tech Founders Gala 2026</div><div class="event-date" id="outreachEventMeta">June 14, 2026 &middot; The Shard, London</div></div></div><div class="event-stats" id="outreachEventStats"><div class="stat-item"><div class="stat-value" id="outreachStatMatched">0</div><div class="stat-label">Matched</div></div><div class="stat-item"><div class="stat-value" id="outreachStatDrafts">0</div><div class="stat-label">Drafts Ready</div></div><div class="stat-item"><div class="stat-value" id="outreachStatSent">0</div><div class="stat-label">Sent</div></div></div></div>
       <div class="action-bar"><button class="btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Send All Invitations<span class="btn-badge">10</span></button><button class="btn-secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Regenerate Selected</button><button class="btn-secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export CSV</button></div>
       <div class="email-grid" id="emailGrid"></div>
     </div>
@@ -335,23 +348,23 @@
     <div class="content" id="insightsContent">
       <div class="content-header-flex"><div><h1>Insights &amp; Dashboards</h1><p>Post-event analytics and AI-powered strategic recommendations.</p></div><select class="event-selector"><option>Tech Founders Gala 2026</option><option>Spring Networking Mixer</option></select></div>
       <div class="kpi-row" id="insightsKpiRow">
-        <div class="kpi-card"><div class="kpi-label">Invited</div><div class="kpi-value">10</div><div class="kpi-change up">&uarr; All matched alumni</div></div>
-        <div class="kpi-card"><div class="kpi-label">Attended</div><div class="kpi-value">7 <span style="font-size:16px;font-weight:600;opacity:0.4">(70%)</span></div><div class="kpi-change up">&uarr; 39% vs last event</div></div>
-        <div class="kpi-card"><div class="kpi-label">Email Open Rate</div><div class="kpi-value">90%</div><div class="kpi-change up">&uarr; 24% vs industry avg</div></div>
-        <div class="kpi-card"><div class="kpi-label">Avg Match Score</div><div class="kpi-value">89%</div><div class="kpi-change up">&uarr; 12% vs last event</div></div>
+        <div class="kpi-card"><div class="kpi-label">Invited</div><div class="kpi-value">0</div><div class="kpi-change up">—</div></div>
+        <div class="kpi-card"><div class="kpi-label">Attended</div><div class="kpi-value">0 <span style="font-size:16px;font-weight:600;opacity:0.4">(0%)</span></div><div class="kpi-change up">—</div></div>
+        <div class="kpi-card"><div class="kpi-label">Email Open Rate</div><div class="kpi-value">0%</div><div class="kpi-change up">—</div></div>
+        <div class="kpi-card"><div class="kpi-label">Avg Match Score</div><div class="kpi-value">0%</div><div class="kpi-change up">—</div></div>
       </div>
       <div class="row-2-1">
         <div class="card"><h3>Engagement Funnel</h3><div class="card-sub" id="insightsFunnelSub">From pool to acceptance</div><div class="funnel" id="insightsFunnelInner">
-          <div class="funnel-step"><div class="funnel-label">Pool</div><div class="funnel-bar-wrap"><div class="funnel-bar" data-width="100%" style="background:var(--pecan-light)">10</div></div><div class="funnel-rate"></div></div>
-          <div class="funnel-step"><div class="funnel-label">Sent</div><div class="funnel-bar-wrap"><div class="funnel-bar" data-width="100%" style="background:var(--pecan-orange)">10</div></div><div class="funnel-rate">100%</div></div>
-          <div class="funnel-step"><div class="funnel-label">Opened</div><div class="funnel-bar-wrap"><div class="funnel-bar" data-width="90%" style="background:#EC9A6B">9</div></div><div class="funnel-rate">90%</div></div>
-          <div class="funnel-step"><div class="funnel-label">Accepted</div><div class="funnel-bar-wrap"><div class="funnel-bar" data-width="70%" style="background:var(--pecan-deep)">7</div></div><div class="funnel-rate">—</div></div>
+          <div class="funnel-step"><div class="funnel-label">Pool</div><div class="funnel-bar-wrap"><div class="funnel-bar" data-width="0%" style="background:var(--pecan-light)">0</div></div><div class="funnel-rate"></div></div>
+          <div class="funnel-step"><div class="funnel-label">Sent</div><div class="funnel-bar-wrap"><div class="funnel-bar" data-width="0%" style="background:var(--pecan-orange)">0</div></div><div class="funnel-rate">0%</div></div>
+          <div class="funnel-step"><div class="funnel-label">Opened</div><div class="funnel-bar-wrap"><div class="funnel-bar" data-width="0%" style="background:#EC9A6B">0</div></div><div class="funnel-rate">0%</div></div>
+          <div class="funnel-step"><div class="funnel-label">Accepted</div><div class="funnel-bar-wrap"><div class="funnel-bar" data-width="0%" style="background:var(--pecan-deep)">0</div></div><div class="funnel-rate">—</div></div>
         </div></div>
         <div class="card"><h3>Segment breakdown</h3><div class="card-sub" id="insightsDonutSub">Response by segment</div><div class="donut-container" id="insightsDonutWrap"><div class="donut-animated"><svg viewBox="0 0 100 100"><circle class="donut-segment" cx="50" cy="50" r="45" stroke="var(--pecan-orange)" data-pct="35" data-offset="0"/><circle class="donut-segment" cx="50" cy="50" r="45" stroke="var(--pecan-deep)" data-pct="20" data-offset="35"/><circle class="donut-segment" cx="50" cy="50" r="45" stroke="var(--pecan-green)" data-pct="17" data-offset="55"/><circle class="donut-segment" cx="50" cy="50" r="45" stroke="var(--pecan-light)" data-pct="16" data-offset="72"/><circle class="donut-segment" cx="50" cy="50" r="45" stroke="rgba(45,27,14,0.08)" data-pct="12" data-offset="88"/></svg><div class="donut-hole"></div></div><div class="donut-legend" id="insightsDonutLegend"><div class="legend-item"><div class="legend-dot" style="background:var(--pecan-orange)"></div>Tech Founder<span class="legend-value">35%</span></div><div class="legend-item"><div class="legend-dot" style="background:var(--pecan-deep)"></div>Investor / VC<span class="legend-value">20%</span></div><div class="legend-item"><div class="legend-dot" style="background:var(--pecan-green)"></div>AI / ML<span class="legend-value">17%</span></div><div class="legend-item"><div class="legend-dot" style="background:var(--pecan-light)"></div>Donor<span class="legend-value">16%</span></div><div class="legend-item"><div class="legend-dot" style="background:rgba(45,27,14,0.1)"></div>Other<span class="legend-value">12%</span></div></div></div></div>
       </div>
       <div class="row-2">
         <div class="card"><h3>Attendance by Event (Last 6)</h3><div class="card-sub">Comparing attendance rates across recent events</div><div class="vbar-chart"><div class="vbar-col"><div class="vbar-value">42%</div><div class="vbar-bar" data-height="59" style="background:var(--pecan-light)"></div><div class="vbar-label">Mixer '24</div></div><div class="vbar-col"><div class="vbar-value">55%</div><div class="vbar-bar" data-height="77" style="background:var(--pecan-light)"></div><div class="vbar-label">Gala '24</div></div><div class="vbar-col"><div class="vbar-value">48%</div><div class="vbar-bar" data-height="67" style="background:var(--pecan-light)"></div><div class="vbar-label">Career '25</div></div><div class="vbar-col"><div class="vbar-value">61%</div><div class="vbar-bar" data-height="85" style="background:#EC9A6B"></div><div class="vbar-label">Mixer '25</div></div><div class="vbar-col"><div class="vbar-value">58%</div><div class="vbar-bar" data-height="81" style="background:#EC9A6B"></div><div class="vbar-label">Fund. '25</div></div><div class="vbar-col"><div class="vbar-value" style="color:var(--pecan-orange);font-weight:900">70%</div><div class="vbar-bar" data-height="98" style="background:var(--pecan-orange)"></div><div class="vbar-label" style="font-weight:700;color:var(--pecan-orange)">Gala '26</div></div></div></div>
-        <div class="card"><h3>Open Rate Over Time</h3><div class="card-sub">Hourly email open tracking after send</div><div class="sparkline-wrap"><svg viewBox="0 0 300 100" preserveAspectRatio="none"><line x1="0" y1="25" x2="300" y2="25" stroke="rgba(45,27,14,0.04)" stroke-width="1"/><line x1="0" y1="50" x2="300" y2="50" stroke="rgba(45,27,14,0.04)" stroke-width="1"/><line x1="0" y1="75" x2="300" y2="75" stroke="rgba(45,27,14,0.04)" stroke-width="1"/><defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EF8E59" stop-opacity="0.4"/><stop offset="100%" stop-color="#EF8E59" stop-opacity="0"/></linearGradient></defs><path class="sparkline-area" d="M0,90 C20,88 40,75 60,60 C80,45 100,30 130,22 C160,14 190,12 210,11 C230,10 260,10 280,10 L300,10 L300,100 L0,100 Z" fill="url(#areaGrad)"/><path class="sparkline-path" d="M0,90 C20,88 40,75 60,60 C80,45 100,30 130,22 C160,14 190,12 210,11 C230,10 260,10 280,10" fill="none" stroke="#EF8E59" stroke-width="2.5" stroke-linecap="round"/><circle class="sparkline-dot" cx="0" cy="90" r="3" fill="#EF8E59"/><circle class="sparkline-dot" cx="60" cy="60" r="3" fill="#EF8E59"/><circle class="sparkline-dot" cx="130" cy="22" r="3" fill="#EF8E59"/><circle class="sparkline-dot" cx="210" cy="11" r="3" fill="#EF8E59"/><circle class="sparkline-dot" cx="280" cy="10" r="4" fill="#EF8E59" stroke="white" stroke-width="2"/><text x="0" y="98" font-size="8" fill="#905535" opacity="0.5" font-family="DM Sans">0h</text><text x="58" y="98" font-size="8" fill="#905535" opacity="0.5" font-family="DM Sans">6h</text><text x="128" y="98" font-size="8" fill="#905535" opacity="0.5" font-family="DM Sans">12h</text><text x="208" y="98" font-size="8" fill="#905535" opacity="0.5" font-family="DM Sans">24h</text><text x="274" y="98" font-size="8" fill="#905535" opacity="0.5" font-family="DM Sans">48h</text><text class="sparkline-dot" x="282" y="8" font-size="9" fill="#EF8E59" font-weight="700" font-family="DM Sans">90%</text></svg></div></div>
+        <div class="card"><h3>Open Rate Over Time</h3><div class="card-sub">Hourly email open tracking after send</div><div class="sparkline-wrap"><svg viewBox="0 0 300 100" preserveAspectRatio="none"><line x1="0" y1="25" x2="300" y2="25" stroke="rgba(45,27,14,0.04)" stroke-width="1"/><line x1="0" y1="50" x2="300" y2="50" stroke="rgba(45,27,14,0.04)" stroke-width="1"/><line x1="0" y1="75" x2="300" y2="75" stroke="rgba(45,27,14,0.04)" stroke-width="1"/><defs><linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EF8E59" stop-opacity="0.4"/><stop offset="100%" stop-color="#EF8E59" stop-opacity="0"/></linearGradient></defs><path class="sparkline-area" d="M0,90 C20,88 40,75 60,60 C80,45 100,30 130,22 C160,14 190,12 210,11 C230,10 260,10 280,10 L300,10 L300,100 L0,100 Z" fill="url(#areaGrad)"/><path class="sparkline-path" d="M0,90 C20,88 40,75 60,60 C80,45 100,30 130,22 C160,14 190,12 210,11 C230,10 260,10 280,10" fill="none" stroke="#EF8E59" stroke-width="2.5" stroke-linecap="round"/><circle class="sparkline-dot" cx="0" cy="90" r="3" fill="#EF8E59"/><circle class="sparkline-dot" cx="60" cy="60" r="3" fill="#EF8E59"/><circle class="sparkline-dot" cx="130" cy="22" r="3" fill="#EF8E59"/><circle class="sparkline-dot" cx="210" cy="11" r="3" fill="#EF8E59"/><circle class="sparkline-dot" cx="280" cy="10" r="4" fill="#EF8E59" stroke="white" stroke-width="2"/><text x="0" y="98" font-size="8" fill="#905535" opacity="0.5" font-family="Inter">0h</text><text x="58" y="98" font-size="8" fill="#905535" opacity="0.5" font-family="Inter">6h</text><text x="128" y="98" font-size="8" fill="#905535" opacity="0.5" font-family="Inter">12h</text><text x="208" y="98" font-size="8" fill="#905535" opacity="0.5" font-family="Inter">24h</text><text x="274" y="98" font-size="8" fill="#905535" opacity="0.5" font-family="Inter">48h</text><text class="sparkline-dot" x="282" y="8" font-size="9" fill="#EF8E59" font-weight="700" font-family="Inter">90%</text></svg></div></div>
       </div>
       <div class="row-2">
         <div class="card"><h3>Response by Location</h3><div class="card-sub">Alumni engagement by region</div><div class="hbar-chart"><div class="hbar-row"><div class="hbar-label">London</div><div class="hbar-track"><div class="hbar-fill" data-width="92%" style="background:var(--pecan-orange)">92%</div></div></div><div class="hbar-row"><div class="hbar-label">New York</div><div class="hbar-track"><div class="hbar-fill" data-width="75%" style="background:#EC9A6B">75%</div></div></div><div class="hbar-row"><div class="hbar-label">San Fran.</div><div class="hbar-track"><div class="hbar-fill" data-width="68%" style="background:#EC9A6B">68%</div></div></div><div class="hbar-row"><div class="hbar-label">Berlin</div><div class="hbar-track"><div class="hbar-fill" data-width="50%" style="background:var(--pecan-light)">50%</div></div></div><div class="hbar-row"><div class="hbar-label">Madrid</div><div class="hbar-track"><div class="hbar-fill" data-width="40%" style="background:var(--pecan-light)">40%</div></div></div></div></div>

@@ -10,7 +10,7 @@ Built for the AI Agents hackathon track, Pecan demonstrates deep autonomy, real-
 
 ## The Problem
 
-96% of university alumni disengage within 3 years of graduation. Alumni teams face fragmented data across CRMs, spreadsheets, and event platforms. Outreach is manual, generic, and impossible to track. Nobody knows who actually showed up.
+96% of university alumni disengage within 3 years of graduation. Alumni teams face fragmented data across CRMs, spreadsheets, and event platforms. Outreach is manual, generic, and impossible to track.
 
 ## The Solution
 
